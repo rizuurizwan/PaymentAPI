@@ -16,8 +16,19 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PaymentDetailContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
 
-var app = builder.Build();
+//deploy
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5000); // or use port from environment
+});
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+
+//
+
+
+var app = builder.Build();
+app.Urls.Add($"http://*:{port}");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

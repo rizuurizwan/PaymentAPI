@@ -5,7 +5,7 @@ using PaymentAPI.Controllers.Mail;
 public class EmailService
 {
     private readonly string _smtpHost = "smtp.gmail.com";
-    private readonly int _smtpPort = 587; // TLS port
+    private readonly int _smtpPort = 587;
     private readonly string _smtpUser = "mohamedrizwan145ar@gmail.com"; // your gmail
     private readonly string _smtpPass = "xjus gdfk njlg niuf";  // Gmail app password or actual password if less secure enabled
 
