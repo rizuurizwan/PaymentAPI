@@ -108,9 +108,11 @@ namespace PaymentAPI.Controllers
         {
             try
             {
-                var connection = _context.Database.GetDbConnection();
-                connection.Open();
-                return Ok("DB Connected Successfully");
+                //var connection = _context.Database.GetDbConnection();
+                //connection.Open();
+                //return Ok("DB Connected Successfully");
+                var connStr = _context.Database.GetDbConnection().ConnectionString;
+                return Ok(connStr);
             }
             catch (Exception ex)
             {
