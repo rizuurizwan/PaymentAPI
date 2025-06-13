@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PaymentAPI.Model;
 using Microsoft.Data.Sql;
+using Microsoft.Data.SqlClient;
 
 namespace PaymentAPI.Controllers
 {
@@ -102,5 +103,19 @@ namespace PaymentAPI.Controllers
             return _context.Colleges.Any(e => e.age == id);
         }
 
+        [HttpGet("db")]
+        public IActionResult TestConnection()
+        {
+            try
+            {
+                var connection = _context.Database.GetDbConnection();
+                connection.Open();
+                return Ok("DB Connected Successfully");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "DB Error: " + ex.Message);
+            }
+        }
     }
 }

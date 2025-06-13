@@ -29,35 +29,6 @@ namespace PaymentAPI.Controllers.Mail
             return StatusCode(500, new { message = "Failed to send email" });
         }
 
-        [Route("api/test")]
-        [ApiController]
-        public class TestController : ControllerBase
-        {
-            private readonly IConfiguration _configuration;
-
-            public TestController(IConfiguration configuration)
-            {
-                _configuration = configuration;
-            }
-
-            [HttpGet("db")]
-            public IActionResult TestConnection()
-            {
-                try
-                {
-                    var connStr = _configuration.GetConnectionString("DevConnection");
-                    using (var conn = new SqlConnection(connStr))
-                    {
-                        conn.Open();
-                        return Ok("DB Connected Successfully");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, "DB Error: " + ex.Message);
-                }
-            }
-        }
-
+        
     }
 }
